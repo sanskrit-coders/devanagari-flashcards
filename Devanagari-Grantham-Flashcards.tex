@@ -1,92 +1,8 @@
-% !Tex program = xelatex
+% !TeX program = xelatex
 \documentclass{article}
-%%% PAGE SIZE and MARGINS %%%
-\usepackage[left=5mm,right=5mm,bottom=15mm,top=5mm,paperwidth=74mm,paperheight=105mm]{geometry}
-
-%%% PACKAGES
-\usepackage{fontspec}
-\usepackage{listofitems}
-\usepackage{ifthen}
-\usepackage{xcolor}
-\newcommand{\hl}[1]{\colorbox{green!20}{#1}\hspace{-2pt}}
-
-%%% HEADERS and FOOTERS %%%
-\usepackage{fancyhdr}
-\newcommand{\side}{ }
-\pagestyle{empty}
-\setlength{\headheight}{18pt}
-\lhead[\fancyplain{ }{\pagenumfont\large\thepage}]
-   {\fancyplain{ }{\leftmark}}
-\rhead[\fancyplain{ }{\leftmark}]
-   {\fancyplain{ }{\pagenumfont\large\thepage}}
-\cfoot{ }
-\newcommand{\sep}{\hspace{-0.5ex}{\small$\circ$}\hspace{0.5ex}}
-\fancypagestyle{fancyplain}{ %
-\fancyhf{ } % remove everything
-\renewcommand{\headrulewidth}{0pt} % remove lines as well
-\renewcommand{\footrulewidth}{0pt}
-\lfoot{\fontspec{Noto Sans}\tiny\textcolor{gray}{\thepage-\dng{\side}}}
-}
-
-
-%%% FONT COMMANDS
-\newcommand{\dng}[1]{{\fontspec[Script=Devanagari]{Siddhanta}{#1}}}
-
+\input{preamble}
+\newcommand{\otherfamily}{\fontspec[Script=Grantha,AutoFakeBold=2.5]{Noto Sans Grantha}}
 \begin{document}
-\pagestyle{fancyplain}
-%The following alters word spacing to ensure that words aren't too close to one another!
-\spaceskip=1\fontdimen2\font plus 1\fontdimen3\font minus 1.25\fontdimen4\font
-\setlength{\parindent}{0pt}
-\setlength{\emergencystretch}{3em}
-\newcommand{\dngfamily}{\fontspec[Script=Devanagari]{Siddhanta}}
-\newcommand{\granthafamily}{\fontspec[Script=Grantha]{Noto Sans Grantha}}
-\newcommand{\tlgfamily}{\fontspec[Script=Telugu]{Mandali}}
-\newcommand{\alphabets}[2]{%
-\setsepchar{ }
-\readlist\letters{#2}
-\foreachitem\ltr\in\letters{\ifthenelse{\equal{#1}{\ltr}}{\hl{\ltr} }{\ltr\ }}
-}
-\newcommand{\words}[4]{%
-\setsepchar{ }
-\readlist\letters{#2}
-\foreachitem\ltr\in\letters{\ifthenelse{\equal{#1}{\ltr}}{\hl{\ltr}}{\ltr}}
-\vfill
-\readlist\letters{#3}
-\foreachitem\ltr\in\letters{\ifthenelse{\equal{#1}{\ltr}}{\hl{\ltr}}{\ltr}}
-\vfill
-\readlist\letters{#4}
-\foreachitem\ltr\in\letters{\ifthenelse{\equal{#1}{\ltr}}{\hl{\ltr}}{\ltr}}
-}
-\newcommand{\akshara}[3]{\renewcommand{\side}{अग्रः}
-\begin{minipage}[b][0.3\textheight][t]{\textwidth}
-    #1
-    \fontsize{60pt}{20pt}\selectfont
-    \vfil
-    \begin{center}
-    #2
-    \end{center}
-\end{minipage}
-\vspace{8pt}
-\begin{minipage}[t][0.15\textheight][t]{\textwidth}
-    #1
-    \fontsize{16pt}{10pt}\selectfont
-    \hfill\alphabets{#2}{#3}
-\end{minipage}
-}
-\newcommand{\shabda}[5]{\renewcommand{\side}{पृष्ठः}
-\begin{minipage}[t][0.45\textheight][t]{\textwidth} 
-    #1
-    \fontsize{24pt}{30pt}\selectfont
-    \vspace{10pt}
-    \begin{center}
-    \words{#2}{#3}{#4}{#5}
-    \end{center}
-    \vfil
-\end{minipage}}
-\newcommand{\card}[6]{
-\akshara{\dngfamily}{#1}{#2}\hrule\akshara{\granthafamily}{#3}{#4}
-\clearpage\addtocounter{page}{-1}
-\shabda{\dngfamily}{#1}#5\hrule\shabda{\granthafamily}{#3}#6\clearpage}
 
 \card
 {अ}{अ आ इ ई}%dn
@@ -170,6 +86,5 @@
 {𑌅𑌃}{𑌓 𑌔 𑌅𑌂 𑌅𑌃}
 {{अ क्ष रा}{ }{ }}%dn
 {{𑌅 𑌕𑍍𑌷 𑌰𑌾}{ }{ }}
-
 
 \end{document}
